@@ -1,0 +1,77 @@
+.pageBackground {
+  background: linear-gradient(135deg, #000000, #0f0f3a);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.title {
+  color: #36d7b7;
+  text-shadow: 0 0 10px #36d7b7, 0 0 20px #36d7b7;
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.carouselContainer {
+  width: 90vw; /* Aumentamos el ancho al 90% de la ventana */
+  height: 100vh; /* Aumentamos la altura al 70% de la ventana */
+  perspective: 1200px; /* Profundidad 3D */
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d; /* Habilita el efecto 3D */
+  transition: transform 3s ease; /* Transición suave */
+}
+
+.slide {
+  position: absolute;
+  width: 100%; /* Las diapositivas ocupan el 100% del contenedor */
+  height: 100%; /* Las diapositivas ocupan el 100% del contenedor */
+  backface-visibility: hidden; /* Oculta la parte trasera */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que las imágenes cubren el área sin distorsionarse */
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Efecto de sombra para las imágenes */
+}
+.logo-video {
+  width: 40px; /* Tamaño del video */
+  height: 40px; 
+  border-radius: 50%; /* Haz el video circular */
+  object-fit: cover; /* Ajusta el contenido al espacio */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra ligera */
+}
+
+.navbar-brand span {
+  color: #36d7b7; /* Color del texto del logo */
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo{
+  width: 20%;
+  height: auto;
+}
