@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import './App.css'; 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import gif from "./assets/bsidelogo.gif";
 
-import gif from './assets/bsidelogo.gif'
 const App = () => {
   const [loading, setLoading] = useState(true);
-  const [angle, setAngle] = useState(0); // Ángulo inicial del carrusel
+  const [angle, setAngle] = useState(0);
+  const scrollTimeoutRef = useRef(null);
+
   const images = [
     "https://www.infobae.com/resizer/v2/https%3A%2F%2Fs3.amazonaws.com%2Farc-wordpress-client-uploads%2Finfobae-wp%2Fwp-content%2Fuploads%2F2017%2F04%2F06155038%2Fperro-beso.jpg?auth=7db092219938909c16f466d602dcf2715cb44547bae1b45714fbfc66be4b16e9&smart=true&width=1200&height=900&quality=85",
     "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/15665/production/_107435678_perro1.jpg.webp",
@@ -19,40 +21,28 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  let scrollTimeout;
-
   const handleScroll = (e) => {
-    if (scrollTimeout) return;
+    if (scrollTimeoutRef.current) return;
 
     const delta = e.deltaY > 0 ? 1 : -1;
-    const newAngle = angle + delta * (360 / images.length); // Modifica el ángulo para que se mueva hacia el fondo
+    const newAngle = angle + delta * (360 / images.length);
     setAngle(newAngle);
 
-    scrollTimeout = setTimeout(() => {
-      scrollTimeout = null;
-    }, 1200); // Ajusta para reducir sensibilidad
+    scrollTimeoutRef.current = setTimeout(() => {
+      scrollTimeoutRef.current = null;
+    }, 1200);
   };
 
   return (
     <div className="pageBackground">
-      
       <header>
         <nav id="navbar">
-        <img src={gif} alt="" className="logo"/>
-          <div className="container">
-            <h1 className="logo"><a href="index.html" className="title">HOLA BSIDE</a></h1>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Portfolio</a></li>
-              <li><a href="#">Contact</a></li>
-              
-            </ul>
-          </div>
+          <img src={gif} alt="Logo" className="logo" />
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
         </nav>
-       
-          
-       
-
       </header>
       {loading ? (
         <div className="spinnerContainer">
@@ -63,8 +53,7 @@ const App = () => {
           <div
             className="carousel"
             style={{
-              transform: `rotateX(${angle}deg)`, // Rotación hacia el fondo
-              transition: 'transform 1s ease', // Transición suave
+              transform: `rotateX(${angle}deg)`,
             }}
           >
             {images.map((img, index) => (
@@ -72,20 +61,15 @@ const App = () => {
                 key={index}
                 className="slide"
                 style={{
-                  transform: `rotateX(${
-                    index * (360 / images.length)
-                  }deg) translateZ(-700px)`, // Mueve las imágenes hacia el fondo
+                  transform: `rotateX(${index * (360 / images.length)}deg) translateZ(-700px)`,
                 }}
               >
                 <img src={img} alt={`Slide ${index + 1}`} className="image" />
               </div>
             ))}
           </div>
-          
         </div>
-        
       )}
-    
     </div>
   );
 };

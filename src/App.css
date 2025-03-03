@@ -24,12 +24,11 @@
 
 .carouselContainer {
   width: 90vw; /* Aumentamos el ancho al 90% de la ventana */
-  height: 100vh; /* Aumentamos la altura al 70% de la ventana */
+  height: 70vh; /* Aumentamos la altura al 70% de la ventana */
   perspective: 1200px; /* Profundidad 3D */
   margin: 0 auto;
   overflow: hidden;
   position: relative;
-  
 }
 
 .carousel {
@@ -57,6 +56,7 @@
   border-radius: 10px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Efecto de sombra para las imágenes */
 }
+
 .logo-video {
   width: 40px; /* Tamaño del video */
   height: 40px; 
@@ -71,7 +71,85 @@
   font-size: 1.2rem;
 }
 
-.logo{
-  width: 20%;
-  height: auto;
+#navbar {
+  display: flex; /* Habilita Flexbox */
+  justify-content: space-between; /* Separa el logo y la lista en extremos opuestos */
+  align-items: center; /* Alinea verticalmente al centro */
+  width: 100%; /* Asegúrate de que ocupe toda la anchura */
+  padding: 10px 20px; /* Espaciado interno */
+  background-color: transparent; /* Sin fondo o sombra */
+  position: fixed; /* Mantén el navbar en la parte superior */
+  top: 0; /* Posición superior */
+  left: 0; /* Alinea con el lado izquierdo */
+  z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+}
+
+#navbar .logo {
+  width: 25%; /* Ajusta el tamaño del logo */
+  height: auto; /* Mantén las proporciones */
+}
+
+#navbar ul {
+  list-style: none; /* Elimina los puntos de la lista */
+  display: flex; /* Alinea horizontalmente los elementos de la lista */
+  margin: 0;
+  padding: 0;
+}
+
+#navbar ul li {
+  margin-left: 20px; /* Espaciado entre elementos de la lista */
+}
+
+#navbar ul li a {
+  color: #ffffff; /* Color del texto de los enlaces */
+  text-decoration: none; /* Elimina el subrayado */
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+#navbar ul li a:hover {
+  color: #36d7b7; /* Cambia el color al pasar el cursor */
+}
+
+/* Media Queries para pantallas más pequeñas */
+
+/* Para tablets */
+@media (max-width: 768px) {
+  .carouselContainer {
+    width: 90vw;  /* Reducción del ancho en pantallas pequeñas */
+    height: 50vh;  /* Reducción de la altura del carrusel */
+  }
+
+  .carousel {
+    transition: transform 1.5s ease;  /* Transición más rápida */
+  }
+
+  .image {
+    object-fit: cover;  /* Asegura que las imágenes se ajusten correctamente */
+  }
+
+  /* Ajustes para el logo en tablets */
+  #navbar .logo {
+    width: 45%; /* Aumenta el tamaño del logo en pantallas más pequeñas */
+    max-width: 250px; /* Máximo tamaño del logo */
+  }
+}
+
+/* Para móviles */
+@media (max-width: 480px) {
+  .carouselContainer {
+    width: 90vw;  /* Ajuste en el ancho */
+    height: 40vh;  /* Reducción de la altura del carrusel en pantallas muy pequeñas */
+  }
+
+  .carousel {
+    transition: transform 1s ease;  /* Transición más rápida en móviles */
+  }
+
+  /* Ajustes para el logo en móviles */
+  #navbar .logo {
+    width: 70%; /* Aumenta el tamaño del logo en pantallas móviles */
+    max-width: 200px; /* Ajusta el tamaño máximo */
+  }
 }
